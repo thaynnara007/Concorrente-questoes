@@ -15,7 +15,7 @@ public class AlunoUEPB implements Runnable {
 		while(true) {
 			try {
 				this.barco.embarcar(TipoAluno.UEPB, name);
-			} catch (Exception e) {
+			} catch (InterruptedException e) {
 				System.out.println(e.getMessage());
 			}
 		}

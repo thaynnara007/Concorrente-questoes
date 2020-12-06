@@ -1,7 +1,5 @@
 package questao02;
 
-import questao01.Buffer;
-
 public class Main {
 	
 	public static void main(String[] args) {
