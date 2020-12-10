@@ -4,20 +4,20 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		Barco barco = new Barco(); 
-		AlunoUEPB p1 = new AlunoUEPB(barco, "p1");
-		AlunoUFCG p2 = new AlunoUFCG(barco, "p2");
-		AlunoUEPB p3 = new AlunoUEPB(barco, "p3");
-		AlunoUFCG p4 = new AlunoUFCG(barco, "p4");
-		AlunoUEPB p5 = new AlunoUEPB(barco, "p5");
-		AlunoUFCG p6 = new AlunoUFCG(barco, "p6");
-		AlunoUEPB p7 = new AlunoUEPB(barco, "p7");
-		AlunoUFCG p8 = new AlunoUFCG(barco, "p8");
-		AlunoUFCG p9 = new AlunoUFCG(barco, "p9");
-		AlunoUFCG p10 = new AlunoUFCG(barco, "p10");
-		AlunoUFCG p11 = new AlunoUFCG(barco, "p11");
-		AlunoUFCG p12 = new AlunoUFCG(barco, "p12");
-		AlunoUEPB p13 = new AlunoUEPB(barco, "p13");
+		SemaforosQuestao02 semaforos = new SemaforosQuestao02();
+		AlunoUEPB p1 = new AlunoUEPB(semaforos, "p1");
+		AlunoUFCG p2 = new AlunoUFCG(semaforos, "p2");
+		AlunoUEPB p3 = new AlunoUEPB(semaforos, "p3");
+		AlunoUFCG p4 = new AlunoUFCG(semaforos, "p4");
+		AlunoUEPB p5 = new AlunoUEPB(semaforos, "p5");
+		AlunoUFCG p6 = new AlunoUFCG(semaforos, "p6");
+		AlunoUEPB p7 = new AlunoUEPB(semaforos, "p7");
+		AlunoUFCG p8 = new AlunoUFCG(semaforos, "p8");
+		AlunoUFCG p9 = new AlunoUFCG(semaforos, "p9");
+		AlunoUFCG p10 = new AlunoUFCG(semaforos, "p10");
+		AlunoUFCG p11 = new AlunoUFCG(semaforos, "p11");
+		AlunoUFCG p12 = new AlunoUFCG(semaforos, "p12");
+		AlunoUEPB p13 = new AlunoUEPB(semaforos, "p13");
 
 		
 		Thread t1 = new Thread(p8);
@@ -36,7 +36,7 @@ public class Main {
 		
 		
 		t1.start();
-/*		t2.start();
+		t2.start();
 		t3.start();
 		t4.start();
 		t5.start();
@@ -47,7 +47,7 @@ public class Main {
 		t10.start();	
 		t11.start();	
 		t12.start();	
-		t13.start(); */
+		t13.start(); 
 	}
 
 }
