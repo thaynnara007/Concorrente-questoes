@@ -36,7 +36,7 @@ public class Main {
 		
 		
 		t1.start();
-		t2.start();
+/*		t2.start();
 		t3.start();
 		t4.start();
 		t5.start();
@@ -47,7 +47,7 @@ public class Main {
 		t10.start();	
 		t11.start();	
 		t12.start();	
-		t13.start();
+		t13.start(); */
 	}
 
 }

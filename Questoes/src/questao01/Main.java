@@ -6,14 +6,15 @@ public class Main {
 		
 		int capacidade = 5;
 		
-		Carro carro = new Carro(capacidade);
-		Passageiro p1 = new Passageiro(carro, "p1");
-		Passageiro p2 = new Passageiro(carro, "p2");
-		Passageiro p3 = new Passageiro(carro, "p3");
-		Passageiro p4 = new Passageiro(carro, "p4");
-		Passageiro p5 = new Passageiro(carro, "p5");
-		Passageiro p6 = new Passageiro(carro, "p6");
-		Passageiro p7 = new Passageiro(carro, "p7");
+		SemaforosQuestao01 semaforos = new SemaforosQuestao01(capacidade);
+		Carro carro = new Carro(semaforos);
+		Passageiro p1 = new Passageiro(semaforos, "p1");
+		Passageiro p2 = new Passageiro(semaforos, "p2");
+		Passageiro p3 = new Passageiro(semaforos, "p3");
+		Passageiro p4 = new Passageiro(semaforos, "p4");
+		Passageiro p5 = new Passageiro(semaforos, "p5");
+		Passageiro p6 = new Passageiro(semaforos, "p6");
+		Passageiro p7 = new Passageiro(semaforos, "p7");
 
 		
 		Thread t1 = new Thread(carro);

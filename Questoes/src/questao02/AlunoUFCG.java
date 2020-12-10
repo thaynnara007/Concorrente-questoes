@@ -14,7 +14,10 @@ public class AlunoUFCG implements Runnable{
 	public void run() {
 		while(true) {
 			try {
-				this.barco.embarcar(TipoAluno.UFCG, name);
+				boolean embarcou = false;
+				
+				while (!embarcou)
+					embarcou = this.barco.embarcar(TipoAluno.UFCG, name);
 			} catch (InterruptedException e) {
 				System.err.println(e.getMessage());
 			}

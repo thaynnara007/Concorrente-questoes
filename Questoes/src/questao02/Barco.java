@@ -1,14 +1,20 @@
 package questao02;
 
+import java.util.concurrent.Semaphore;
+
 public class Barco {
 	
 	private final int TOTAL = 4;
 	private int alunosUFCG;
 	private int alunosUEPB;
+	private Semaphore embarque;
+	private Semaphore esperaEncher;
 	
 	public Barco() {
 		this.alunosUEPB = 0;
 		this.alunosUFCG = 0;
+		this.embarque = new Semaphore(1);
+		this.esperaEncher = new Semaphore(0);
 	}
 	
 	private int alunos() {
@@ -45,58 +51,51 @@ public class Barco {
 	}
 	
 	
-	public synchronized void embarcar(TipoAluno tipo, String name) throws InterruptedException {
-		/* Enquanto o barco estiver lotado ou se você for um aluno, cujo sua universidade vai contra
-		 * as configurações permitidas no barco, então espera.
-		 */
-		while (this.isFull() || !this.permiteAluno(tipo)) {
-			wait();
-		}
+	public boolean embarcar(TipoAluno tipo, String name) throws InterruptedException {
+		this.embarque.acquire();
 		
-		// Se o aluno for da UEPB, então incrementar a quantidade de alunos da UEPB
+		if (!this.permiteAluno(tipo))
+				return false;
+		
+		
 		if (tipo.equals(TipoAluno.UEPB)) {
-			System.out.println("Um aluno da UEPB entrou no barco " + name);
-			this.alunosUEPB += 1;
+			this.alunosUEPB++;
+			System.out.println("O aluno " + name + " da UEPB embarcou.");
 		}
-		// Se o aluno for da UFCG, então incrementa a quantidade de alunos da UFCG
 		else {
-			System.out.println("Um aluno da UFCG entrou no barco " + name);
-			this.alunosUFCG += 1;
+			this.alunosUFCG++;
+			System.out.println("O aluno " + name + " da UFCG embarcou.");
+
 		}
 		
-		// Se o barco tiver alcançado a capacidade máxima, então a última thread que vai remar
-		if (this.isFull()) {
-			this.remar(tipo, name);
-		}
+		if(this.isFull()) 
+			this.esperaEncher.release();
 		
-		// caso o barco não esteja cheio e você tiver entrado no barco, então espera.
-		wait();
+		this.esperaEncher.acquire();
+		this.esperaEncher.release();
+		
+		this.embarque.release();
+		return true;	
 	}
 	
-	public synchronized void remar(TipoAluno tipo, String name) throws InterruptedException {
+	public void remar(TipoAluno tipo, String name) throws InterruptedException {
 		// Apenas um aluno pega o remo antes de chamar viajem()
 		if (tipo.equals(TipoAluno.UEPB))
-			System.out.println("Um aluno da UEPB vai REMAR " + name);
+			System.out.println("O aluno " + name + " da UEPB vai remar.");
 		else 
-			System.out.println("Um aluno da UFCG vai REMAR " + name);
+			System.out.println("O aluno " + name + " da UFCG vai remar.");
 		
 		this.viajem();
 		
 	}
 	
-	private synchronized void viajem() throws InterruptedException {
-		// Colocar a thread que ta com o remo para dormir, simulando o tempo de uma viajem.
+	private void viajem() throws InterruptedException {
 		System.out.println("ATRAVESSA O AÇUDE...");
-		Thread.sleep(1000);
 		
 		System.out.println("ACABANDO A VIAJEM...");
+		
 		// Ao acabar a viajem, todos os alunos são retirados do barco e podem voltar a embarcar
 		this.alunosUEPB = 0;
 		this.alunosUFCG = 0;
-		
-		/* Notifica as thread que ficaram esperando no embarcar e libera as que esperando, 
-		 * dentro do barco, para dar continuidade.
-		*/
-		notifyAll();
 	}
 }
