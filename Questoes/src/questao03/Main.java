@@ -1,26 +1,23 @@
 package questao03;
 
-import questao03.Aluno;
-import questao03.Mesa;
-
 public class Main {
 	
 	public static void main(String[] args) {
 		
-		Mesa mesa = new Mesa(); 
-		Aluno p1 = new Aluno(mesa, "p1");
-		Aluno p2 = new Aluno(mesa, "p2");
-		Aluno p3 = new Aluno(mesa, "p3");
-		Aluno p4 = new Aluno(mesa, "p4");
-		Aluno p5 = new Aluno(mesa, "p5");
-		Aluno p6 = new Aluno(mesa, "p6");
-		Aluno p7 = new Aluno(mesa, "p7");
-		Aluno p8 = new Aluno(mesa, "p8");
-		Aluno p9 = new Aluno(mesa, "p9");
-		Aluno p10 = new Aluno(mesa, "p10");
-		Aluno p11 = new Aluno(mesa, "p11");
-		Aluno p12 = new Aluno(mesa, "p12");
-		Aluno p13 = new Aluno(mesa, "p13");
+		SemafarosQuestao03 semaforos = new SemafarosQuestao03();
+		Aluno p1 = new Aluno(semaforos, "p1");
+		Aluno p2 = new Aluno(semaforos, "p2");
+		Aluno p3 = new Aluno(semaforos, "p3");
+		Aluno p4 = new Aluno(semaforos, "p4");
+		Aluno p5 = new Aluno(semaforos, "p5");
+		Aluno p6 = new Aluno(semaforos, "p6");
+		Aluno p7 = new Aluno(semaforos, "p7");
+		Aluno p8 = new Aluno(semaforos, "p8");
+		Aluno p9 = new Aluno(semaforos, "p9");
+		Aluno p10 = new Aluno(semaforos, "p10");
+		Aluno p11 = new Aluno(semaforos, "p11");
+		Aluno p12 = new Aluno(semaforos, "p12");
+		Aluno p13 = new Aluno(semaforos, "p13");
 
 		
 		Thread t1 = new Thread(p8);
