@@ -4,9 +4,9 @@ import java.util.concurrent.Semaphore;
 
 public class Carro implements Runnable{
 	
-	private Semaphore carregando;
-	private Semaphore vagasEmbarque;
-	private Semaphore descarregando;
+	Semaphore carregando;
+	Semaphore vagasEmbarque;
+	Semaphore descarregando;
 	private Semaphore esperaFicarCheio;
 	private Semaphore esperaFicarVazio;
 	private int capacidade;
@@ -42,8 +42,6 @@ public class Carro implements Runnable{
 	}
 	
 	public void embarcar(String name) throws InterruptedException {
-		this.vagasEmbarque.acquire();
-		this.carregando.acquire();
 		
 		this.passageiros++;
 		System.out.println("Passageiro "+ name + " embarcou");
@@ -76,8 +74,6 @@ public class Carro implements Runnable{
 	}
 	
 	public void desembarcar(String name) throws InterruptedException {
-		this.descarregando.acquire();
-		this.vagasEmbarque.release();
 		
 		this.passageiros--;
 		System.out.println("passageiro " + name + " saiu");

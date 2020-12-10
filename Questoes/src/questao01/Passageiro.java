@@ -23,10 +23,16 @@ public class Passageiro implements Runnable {
 	}
 	
 	private void embarcar() throws InterruptedException {
+		carro.vagasEmbarque.acquire();
+		carro.carregando.acquire();
+		
 		this.carro.embarcar(this.name);
 	}
 	
 	private void desembarcar() throws InterruptedException {
+		carro.descarregando.acquire();
+		carro.vagasEmbarque.release();
+		
 		this.carro.desembarcar(this.name);	
 		}
 	
